@@ -49,6 +49,8 @@
 
 
   <!-- Background 1 -->
+  <div id="guest-name" class="container"></div>
+
   <div class="background-1">
     <div class="container">
       <h1 class="dynamic-title">
@@ -92,7 +94,7 @@
 
       <strong><h3>Syukuran Pernikahan</h3></strong>
     <p>📅 Minggu 27 Juli 2025</p>
-       <p>⏰ 12.30 - 14.00 WIB</p>
+       <p>⏰ 10.30 - 12.00 WIB</p>
       <p>Aula Masjid Baiturrahman Pondok Pinang.
         Kec. Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta
        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.4245398940833!2d106.779469!3d-6.207604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f176b68bdeff%3A0x8e99b65e82d9fbe!2sMasjid%20Baiturrahman%20Pondok%20Pinang!5e0!3m2!1sen!2sid!4v1719392000000!5m2!1sen!2sid" width="100%" height="300" style="border:0; border-radius:12px; margin-top:12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -154,6 +156,16 @@
   </div>
 
   <script>
+    function getQueryParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+const guestName = getQueryParam("to");
+if (guestName) {
+  document.getElementById("guest-name").innerHTML = `<p>Teruntuk <strong>${decodeURIComponent(guestName)}</strong> Dalam suka cita kami</p>`;
+}
+
     const firebaseConfig = {
       apiKey: "AIzaSyD_XJTed1xlR885PImafVa5dRXlaDtkT4M",
       authDomain: "fauzi-cacha.firebaseapp.com",
@@ -193,7 +205,7 @@
 
     document.getElementById("rsvpForm").addEventListener("submit", (e) => {
       e.preventDefault();
-      db.ref('rsvp').push({
+      db.ref('SESI 2').push({
         nama: document.getElementById("rsvpNama").value,
         status: document.getElementById("rsvpStatus").value,
         jumlah: document.getElementById("rsvpJumlah").value
